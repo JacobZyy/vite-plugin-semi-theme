@@ -11,12 +11,16 @@ export default defineConfig({
       fileName: 'index'
     },
     rollupOptions: {
-      external: ['sass', 'node'],
+      external: ['sass', 'node:path', 'node:url', 'node:os', 'node:fs'],
       output: {
         format: 'es',
         globals: {
           sass: 'sass',
-          node: 'node'
+          node: 'node',
+          'node:path': 'node:path',
+          'node:url': 'node:url',
+          'node:os': 'node:os',
+          'node:fs': 'node:fs'
         }
       }
     }
