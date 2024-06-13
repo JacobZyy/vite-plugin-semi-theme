@@ -1,12 +1,14 @@
 {
   "name": "@jacob-z/vite-plugin-semi-theme-loader",
   "version": "0.0.1-beta",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
     }
   },
   "files": [
@@ -20,7 +22,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "rm -rf dist && vite build && tsc -p ./tsconfig.types.json && rm -rf dist/utils dist/index.umd.cjs"
+    "build": "rm -rf dist && vite build && tsc -p ./tsconfig.types.json && rm -rf dist/utils",
+    "release": "npm publish --access public"
   },
   "dependencies": {
     "sass": "^1.49.8"
