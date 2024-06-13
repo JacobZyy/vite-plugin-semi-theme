@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "baseUrl": "./",
+    "outDir": "dist",
+    "sourceMap": false,
+    "allowJs": true,
+    "module": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "declaration": true,
+    "noImplicitAny": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

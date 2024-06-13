@@ -1,16 +1,45 @@
 {
-  "name": "vite-plugin-semi-theme",
-  "version": "0.5.0",
-  "main": "index.js",
-  "repository": "git@github.com:boenfu/vite-plugin-semi-theme.git",
-  "author": "boenfu <1997@boenfu.cn>",
+  "name": "@jacob-z/vite-plugin-semi-theme-loader",
+  "version": "1.0.0",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobZyy/vite-plugin-semi-theme.git"
+  },
+  "author": "jacobzha",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "rm -rf dist && vite build && tsc -p ./tsconfig.types.json && rm -rf dist/utils",
+    "release": "npm publish --access public"
+  },
   "dependencies": {
     "sass": "^1.49.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "prettier": "^3.3.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.13"
   },
   "keywords": [
     "vite-plugin",
     "semi-ui"
-  ]
+  ],
+  "packageManager": "pnpm@9.1.4",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
