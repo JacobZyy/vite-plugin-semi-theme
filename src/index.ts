@@ -9,7 +9,7 @@ export type SemiPluginOption = {
 }
 export type SemiPluginConfig = {
   theme: string
-  options: SemiPluginOption
+  options?: SemiPluginOption
 }
 
 export interface SemiThemeOptions {
