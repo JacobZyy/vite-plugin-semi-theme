@@ -11,11 +11,12 @@ export default defineConfig({
       fileName: 'index'
     },
     rollupOptions: {
-      external: ['sass'],
+      external: ['sass', 'node'],
       output: {
         format: 'es',
         globals: {
-          sass: 'sass'
+          sass: 'sass',
+          node: 'node'
         }
       }
     }
