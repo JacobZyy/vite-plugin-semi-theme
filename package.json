@@ -1,16 +1,27 @@
 {
-  "name": "vite-plugin-semi-theme",
-  "version": "0.5.0",
+  "name": "vite-plugin-semi-theme-loader",
+  "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "repository": "git@github.com:boenfu/vite-plugin-semi-theme.git",
   "author": "boenfu <1997@boenfu.cn>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "rm -rf dist && vite build && tsc -p ./tsconfig.types.json && rm -rf dist/utils dist/index.umd.cjs"
+  },
   "dependencies": {
     "sass": "^1.49.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "prettier": "^3.3.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.13"
   },
   "keywords": [
     "vite-plugin",
     "semi-ui"
-  ]
+  ],
+  "packageManager": "pnpm@9.1.4"
 }
