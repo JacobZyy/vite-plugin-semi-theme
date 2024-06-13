@@ -9,7 +9,7 @@ export function importFileUrlGetter(scssFilePath: string) {
     if (url.startsWith('~@semi-bot')) {
       return new URL(url.substring(1), nodeUrl.pathToFileURL(scssFilePath.substring(0, scssFilePath.indexOf(key) + key.length)))
     } else if (url.startsWith('~')) {
-      return new URL(url.substring(1), nodeUrl.pathToFileURL(url.substring(0, scssFilePath.lastIndexOf(key) + key.length)))
+      return new URL(url.substring(1), nodeUrl.pathToFileURL(scssFilePath.substring(0, scssFilePath.lastIndexOf(key) + key.length)))
     }
 
     const filePath = path.resolve(path.dirname(scssFilePath), url)
