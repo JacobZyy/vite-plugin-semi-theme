@@ -1,5 +1,5 @@
 {
-  "name": "@jacob-z/vite-plugin-semi-theme-loader",
+  "name": "@jacobzha/vite-plugin-semi-theme-loader",
   "version": "0.0.1-beta",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
