@@ -1,6 +1,9 @@
-import { SemiThemeOptions, SemiPluginOption } from '..'
-import { convertMapToString } from '.'
+/* eslint-disable unused-imports/no-unused-vars */
 import fs from 'node:fs'
+
+import type { SemiPluginOption, SemiThemeOptions } from '..'
+
+import { convertMapToString } from '.'
 
 type FileLoaderOptions = SemiThemeOptions & SemiPluginOption
 
@@ -18,6 +21,7 @@ export async function semiThemeLoader(path: string, options: FileLoaderOptions):
   try {
     await import.meta.resolve(`${theme}/scss/animation.scss`)
   } catch (e) {
+    console.log(`${theme}/scss/animation.scss not found`)
     animationStr = '' // fallback to empty string
   }
   const shouldInject = source.includes('semi-base')
@@ -27,8 +31,8 @@ export async function semiThemeLoader(path: string, options: FileLoaderOptions):
   let componentVariables: string | boolean
   try {
     componentVariables = await import.meta.resolve(`${theme}/scss/local.scss`)
-  } catch (e) {
-    console.error(`cannot resolve file ${theme}/scss/local.scss`)
+  } catch (error) {
+    console.log(`cannot resolve file ${theme}/scss/local.scss`)
   }
   const variables = convertMapToString(options.variables)
 
@@ -51,7 +55,9 @@ export async function semiThemeLoader(path: string, options: FileLoaderOptions):
         fileSplit.splice(fileSplit.length - 1, 0, localImport)
         fileStr = fileSplit.join('')
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   // inject prefix

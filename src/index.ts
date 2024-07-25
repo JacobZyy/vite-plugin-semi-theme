@@ -1,6 +1,7 @@
-import type { PluginOption } from 'vite'
-import { normalizePath, semiThemeLoader, importFileUrlGetter } from './utils'
 import { compileString, Logger } from 'sass'
+import type { PluginOption } from 'vite'
+
+import { importFileUrlGetter, normalizePath, semiThemeLoader } from './utils'
 
 export type SemiPluginOption = {
   prefixCls?: string
@@ -13,7 +14,7 @@ export type SemiPluginConfig = {
   options?: SemiPluginOption
 }
 
-export interface SemiThemeOptions {
+export type SemiThemeOptions = {
   name?: string
 }
 
@@ -32,7 +33,7 @@ export default function semiPlugin({ theme, options: originOptions = {} }: SemiP
     load: async (id) => {
       const { projectPath, ...options } = originOptions
       const filePath = normalizePath(id)
-      if (!!options.include) {
+      if (options.include) {
         options.include = normalizePath(options.include)
       }
 
@@ -40,6 +41,7 @@ export default function semiPlugin({ theme, options: originOptions = {} }: SemiP
        * @see https://github.com/DouyinFE/semi-design/blob/main/packages/semi-webpack/src/semi-webpack-plugin.ts#L83
        */
       const shouldLoad = /@douyinfe\/semi-(ui|icons|foundation)\/lib\/.+\.css$/.test(filePath)
+
       if (!shouldLoad) return null
       const scssFilePath = filePath.replace(/\.css$/, '.scss')
 
