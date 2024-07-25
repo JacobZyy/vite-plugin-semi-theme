@@ -3,9 +3,12 @@ import path from 'node:path'
 
 import fs from 'node:fs'
 
-export function importFileUrlGetter(scssFilePath: string) {
+export function importFileUrlGetter(scssFilePath: string, projectPath: string | undefined) {
   return (url: string) => {
     const key = '/node_modules/'
+    if (projectPath) {
+      return new URL(url.substring(1), `${projectPath}${key}`)
+    }
     if (url.startsWith('~@semi-bot')) {
       return new URL(url.substring(1), nodeUrl.pathToFileURL(scssFilePath.substring(0, scssFilePath.indexOf(key) + key.length)))
     } else if (url.startsWith('~')) {

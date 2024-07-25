@@ -6,6 +6,7 @@ export type SemiPluginOption = {
   prefixCls?: string
   variables?: Record<string, string | number>
   include?: string
+  projectPath?: string
 }
 export type SemiPluginConfig = {
   theme: string
@@ -24,11 +25,12 @@ export interface SemiThemeOptions {
  * 3. 再构建成对应的 css
  */
 
-export default function semiPlugin({ theme, options = {} }: SemiPluginConfig): PluginOption {
+export default function semiPlugin({ theme, options: originOptions = {} }: SemiPluginConfig): PluginOption {
   return {
     name: 'semi-theme-loader',
     enforce: 'post',
     load: async (id) => {
+      const { projectPath, ...options } = originOptions
       const filePath = normalizePath(id)
       if (!!options.include) {
         options.include = normalizePath(options.include)
@@ -54,7 +56,7 @@ export default function semiPlugin({ theme, options = {} }: SemiPluginConfig): P
       const compileCSSResult = compileString(loaderResult, {
         importers: [
           {
-            findFileUrl: importFileUrlGetter(scssFilePath)
+            findFileUrl: importFileUrlGetter(scssFilePath, projectPath)
           }
         ],
         logger: Logger.silent
